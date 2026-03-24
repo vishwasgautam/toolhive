@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ToolHive – Free Online Tools for Everyone</title>
+<meta name="description" content="Free online tools for writers, developers, students and professionals. Word counter, JSON formatter, calculators, SEO tools and more – no signup required.">
+<meta name="keywords" content="free online tools, word counter, json formatter, case converter, password generator, loan calculator, seo tools">
+<meta property="og:title" content="ToolHive – Free Online Tools">
+<meta property="og:description" content="20+ free tools for writers, devs, and students. No login, no cost, instant results.">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+<!-- AdSense placeholder – replace with your pub ID -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #13131a;
+    --surface2: #1c1c27;
+    --border: #2a2a3d;
+    --accent: #f0c040;
+    --accent2: #e05a5a;
+    --accent3: #5a9ef0;
+    --text: #e8e8f0;
+    --muted: #7070a0;
+    --radius: 14px;
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* BG texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 10%, rgba(240,192,64,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(90,158,240,0.06) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .logo {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .logo span { color: var(--text); }
+
+  .nav-search {
+    display: flex;
+    align-items: center;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 16px;
+    gap: 8px;
+    width: 260px;
+  }
+  .nav-search input {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 14px;
+    width: 100%;
+  }
+  .nav-search input::placeholder { color: var(--muted); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 72px 2rem 48px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(240,192,64,0.12);
+    border: 1px solid rgba(240,192,64,0.3);
+    border-radius: 100px;
+    padding: 4px 14px;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-family: var(--font-head);
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    letter-spacing: -1.5px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+    position: relative;
+  }
+
+  .hero p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 480px;
+    margin: 0 auto 32px;
+    font-weight: 300;
+  }
+
+  .stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: var(--font-head);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+  .stat-label { font-size: 12px; color: var(--muted); }
+
+  /* ── AD BANNER SLOT ── */
+  .ad-banner {
+    margin: 0 auto 40px;
+    max-width: 728px;
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ── CATEGORIES ── */
+  .categories {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 2rem 40px;
+  }
+
+  .cat-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 16px;
+    color: var(--muted);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-body);
+  }
+  .cat-btn:hover, .cat-btn.active {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* ── TOOLS GRID ── */
+  .tools-section {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 80px;
+  }
+
+  .section-label {
+    font-family: var(--font-head);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 16px;
+  }
+
+  .tool-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+    position: relative;
+    overflow: hidden;
+  }
+  .tool-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(240,192,64,0.04) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .tool-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(240,192,64,0.15);
+  }
+  .tool-card:hover::before { opacity: 1; }
+
+  .tool-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+
+  .tool-name {
+    font-family: var(--font-head);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  .tool-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .tool-tag {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+
+  /* ── TOOL MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(8px);
+    z-index: 200;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 16px;
+    overflow-y: auto;
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 720px;
+    padding: 36px;
+    position: relative;
+    animation: slideUp 0.3s cubic-bezier(0.4,0,0.2,1);
+    margin: auto;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--muted);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all 0.2s;
+  }
+  .modal-close:hover { color: var(--text); border-color: var(--accent); }
+
+  .modal-title {
+    font-family: var(--font-head);
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .modal-subtitle {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 28px;
+  }
+
+  /* Tool UI elements */
+  textarea, input[type="text"], input[type="number"], select {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+  textarea:focus, input:focus, select:focus { border-color: var(--accent); }
+  textarea { min-height: 140px; }
+
+  .btn {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-family: var(--font-head);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .btn:hover { background: #ffd060; transform: translateY(-1px); }
+  .btn-ghost {
+    background: var(--surface2);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { background: var(--border); transform: none; }
+
+  .btn-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+
+  .result-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin-top: 16px;
+    font-size: 14px;
+    min-height: 60px;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  .stats-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .stat-chip {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+  .stat-chip strong {
+    font-family: var(--font-head);
+    color: var(--accent);
+    font-size: 1.1rem;
+    display: block;
+  }
+
+  label {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .field { margin-bottom: 16px; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  /* ad inside modal */
+  .modal-ad {
+    background: var(--surface2);
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 20px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 32px 2rem;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  footer a { color: var(--muted); text-decoration: none; margin: 0 8px; }
+  footer a:hover { color: var(--accent); }
+
+  .hidden { display: none !important; }
+
+  /* copy toast */
+  #toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    font-family: var(--font-head);
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-size: 14px;
+    opacity: 0;
+    transition: all 0.3s;
+    z-index: 999;
+    pointer-events: none;
+  }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 2rem; }
+    .modal { padding: 24px; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .nav-search { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">Tool<span>Hive</span></a>
+  <div class="nav-search">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" placeholder="Search tools..." id="globalSearch" oninput="filterTools(this.value)">
+  </div>
+  <div style="font-size:13px;color:var(--muted);">20 Free Tools</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">⚡ No signup · No cost · No limits</div>
+  <h1>Every tool you need,<br><em>instantly free</em></h1>
+  <p>20+ professional tools for writers, developers, students & creators. Zero ads between you and results.</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">20+</div><div class="stat-label">Free Tools</div></div>
+    <div class="stat"><div class="stat-num">0</div><div class="stat-label">Signup Required</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Browser-based</div></div>
+  </div>
+</section>
+
+<!-- AD BANNER -->
+<div class="ad-banner">📢 Ad Space — 728×90 Leaderboard (AdSense)</div>
+
+<!-- CATEGORIES -->
+<div class="categories">
+  <button class="cat-btn active" onclick="filterCat('all',this)">All Tools</button>
+  <button class="cat-btn" onclick="filterCat('text',this)">✍️ Text</button>
+  <button class="cat-btn" onclick="filterCat('dev',this)">💻 Developer</button>
+  <button class="cat-btn" onclick="filterCat('seo',this)">🔍 SEO</button>
+  <button class="cat-btn" onclick="filterCat('calc',this)">🧮 Calculator</button>
+  <button class="cat-btn" onclick="filterCat('convert',this)">🔄 Converter</button>
+</div>
+
+<!-- TOOLS GRID -->
+<section class="tools-section">
+  <div class="section-label">All Tools</div>
+  <div class="tools-grid" id="toolsGrid"></div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div style="font-family:var(--font-head);font-size:1.1rem;font-weight:800;color:var(--accent);margin-bottom:12px;">ToolHive</div>
+  <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a>
+  <div style="margin-top:12px;">© 2025 ToolHive · Built for productivity</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modalBox">
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    <div id="modalContent"></div>
+    <div class="modal-ad">📢 Ad Space — 728×70 (AdSense)</div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast">Copied!</div>
+
+<script>
+const tools = [
+  {
+    id:'wordcount', cat:'text', icon:'✍️', color:'rgba(240,192,64,0.15)', tagColor:'#f0c040', tag:'Text',
+    name:'Word Counter', desc:'Count words, characters, sentences and reading time instantly.',
+    render: () => `
+      <div class="modal-title">✍️ Word Counter</div>
+      <div class="modal-subtitle">Paste your text to get full statistics instantly.</div>
+      <div class="field"><label>Your Text</label>
+        <textarea id="wc_input" placeholder="Paste or type your text here..." oninput="doWordCount()"></textarea>
+      </div>
+      <div class="stats-row">
+        <div class="stat-chip"><strong id="wc_words">0</strong>Words</div>
+        <div class="stat-chip"><strong id="wc_chars">0</strong>Characters</div>
+        <div class="stat-chip"><strong id="wc_nospace">0</strong>No Spaces</div>
+        <div class="stat-chip"><strong id="wc_sent">0</strong>Sentences</div>
+        <div class="stat-chip"><strong id="wc_para">0</strong>Paragraphs</div>
+        <div class="stat-chip"><strong id="wc_read">0 min</strong>Read Time</div>
+      </div>
+      <div class="btn-row"><button class="btn btn-ghost" onclick="clearField('wc_input');doWordCount()">Clear</button></div>
+    `
+  },
+  {
+    id:'caseconv', cat:'text', icon:'🔤', color:'rgba(90,158,240,0.15)', tagColor:'#5a9ef0', tag:'Text',
+    name:'Case Converter', desc:'Transform text to UPPER, lower, Title, camelCase and more.',
+    render: () => `
+      <div class="modal-title">🔤 Case Converter</div>
+      <div class="modal-subtitle">Instantly convert text to any case format.</div>
+      <div class="field"><label>Input Text</label>
+        <textarea id="cc_input" placeholder="Type or paste text here..."></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn" onclick="convertCase('upper')">UPPERCASE</button>
+        <button class="btn btn-ghost" onclick="convertCase('lower')">lowercase</button>
+        <button class="btn btn-ghost" onclick="convertCase('title')">Title Case</button>
+        <button class="btn btn-ghost" onclick="convertCase('sentence')">Sentence case</button>
+        <button class="btn btn-ghost" onclick="convertCase('camel')">camelCase</button>
+        <button class="btn btn-ghost" onclick="convertCase('snake')">snake_case</button>
+        <button class="btn btn-ghost" onclick="convertCase('kebab')">kebab-case</button>
+      </div>
+      <div class="field" style="margin-top:16px"><label>Result</label>
+        <div class="result-box" id="cc_result">Result appears here...</div>
+      </div>
+      <div class="btn-row"><button class="btn btn-ghost" onclick="copyText('cc_result')">Copy Result</button></div>
+    `
+  },
+  {
+    id:'lorem', cat:'text', icon:'📝', color:'rgba(224,90,90,0.15)', tagColor:'#e05a5a', tag:'Text',
+    name:'Lorem Ipsum Generator', desc:'Generate placeholder text for your designs and mockups.',
+    render: () => `
+      <div class="modal-title">📝 Lorem Ipsum Generator</div>
+      <div class="modal-subtitle">Generate professional placeholder text instantly.</div>
+      <div class="grid-2">
+        <div class="field"><label>Paragraphs</label><input type="number" id="li_para" value="3" min="1" max="20"></div>
+        <div class="field"><label>Style</label>
+          <select id="li_style">
+            <option value="classic">Classic Lorem</option>
+            <option value="cicero">Cicero Original</option>
+          </select>
+        </div>
+      </div>
+      <div class="btn-row"><button class="btn" onclick="genLorem()">Generate</button></div>
+      <div class="field" style="margin-top:16px"><label>Output</label>
+        <div class="result-box" id="li_result" style="max-height:220px;overflow-y:auto"></div>
+      </div>
+      <div class="btn-row"><button class="btn btn-ghost" onclick="copyText('li_result')">Copy</button></div>
+    `
+  },
+  {
+    id:'reverse', cat:'text', icon:'🔁', color:'rgba(130,90,240,0.15)', tagColor:'#825af0', tag:'Text',
+    name:'Text Reverser', desc:'Reverse any text, words, or lines in one click.',
+    render: () => `
+      <div class="modal-title">🔁 Text Reverser</div>
+      <div class="modal-subtitle">Reverse characters, words, or lines.</div>
+      <div class="field"><label>Input</label><textarea id="rv_input" placeholder="Enter text..."></textarea></div>
+      <div class="btn-row">
+        <button class="btn" onclick="reverseText('chars')">Reverse Characters</button>
+        <button class="btn btn-ghost" onclick="reverseText('words')">Reverse Words</button>
+        <button class="btn btn-ghost" onclick="reverseText('lines')">Reverse Lines</button>
+      </div>
+      <div class="field" style="margin-top:16px"><label>Result</label><div class="result-box" id="rv_result"></div></div>
+      <div class="btn-row"><button class="btn btn-ghost" onclick="copyText('rv_result')">Copy</button></div>
+    `
+  },
+  {
+    id:'duprem', cat:'text', icon:'🧹', color:'rgba(240,192,64,0.15)', tagColor:'#f0c040', tag:'Text',
+    name:'Duplicate Line Remover', desc:'Remove duplicate or blank lines from any text instantly.',
+    render: () => `
+      <div class="modal-title">🧹 Duplicate Line Remover</div>
+      <div class="modal-subtitle">Clean up lists and text by removing duplicates.</div>
+      <div class="field"><label>Input (one item per line)</label><textarea id="dr_input" placeholder="paste lines here..."></textarea></div>
+      <div class="btn-row">
+        <button class="btn" onclick="removeDups(false)">Remove Duplicates</button>
+        <button class="btn btn-ghost" onclick="removeDups(true)">Remove + Sort</button>
+        <button class="btn btn-ghost" onclick="removeBlank()">Remove Blank Lines</button>
+      </div>
+      <div class="field" style="margin-top:16px"><label>Result</label><div class="result-box" id="dr_result"></div></div>
+      <div class="btn-row"><button class="btn btn-ghost" onclick="copyText('dr_result')">Copy</button></div>
+    `
+  },
+  {
+    id:'jsonformat', cat:'dev', icon:'{ }', color:'rgba(90,158,240,0.15)', tagColor:'#5a9ef0', tag:'Developer',
+    name:'JSON Formatter', desc:'Beautify, minify and validate JSON with syntax checking.',
+    render: () => `
+      <div class="modal-title">{ } JSON Formatter</div>
+      <div class="modal-subtitle">Paste raw JSON to format, validate or minify it.</div>
+      <div class="field"><label>Raw JSON</label><textarea id="jf_input" placeholder='{"key":"value","arr":[1,2,3]}' style="font-family:monospace;font-size:13px"></textarea></div>
+      <div class="btn-row">
+        <button class="btn" onclick="formatJSON(true)">Beautify</button>
+        <button class="btn btn-ghost" onclick="formatJSON(false)">Minify</button>
+        <button class="btn btn-ghost" onclick="validateJSON()">Validate</button>
+      </div>
+      <div class="field" style="margin-top:16px"><label>Output</label>
+        <div class="result-box" id="jf_result" style="font-family:monospace;font-size:13px;max-height:220px;overflow-y:auto"></div>
+      </div>
+      <div class="btn-row"><button class="btn btn-ghost" onclick="copyText('jf_result')">Copy</button></div>
+    `
+  },
+  {
+    id:'base64', cat:'dev', icon:'64', color:'rgba(224,90,90,0.15)', tagColor:'#e05a5a', tag:'Developer',
+    name:'Base64 Encoder/Decoder', desc:'Encode or decode Base64 strings instantly in browser.',
+    render: () => `
+      <div class="modal-title">Base64 Encoder / Decoder</div>
+      <div class="modal-subtitle">Encode text to Base64 or decode Base64 to text.</div>
+      <div class="field"><label>Input</label><textarea id="b64_input" placeholder="Text or Base64 string..."></textarea></div>
+      <div class="btn-row">
+        <button class="btn" onclick="doBase64('encode')">Encode →</button>
+        <button class="btn btn-ghost" onclick="doBase64('decode')">← Decode</button>
+      </div>
+      <div class="field" style="margin-top:16px"><label>Output</label><div class="result-box" id="b64_result"></div></div>
+      <div class="btn-row"><button class="btn btn-ghost" onclick="copyText('b64_result')">Copy</button></div>
+    `
+  },
+  {
+    id:'urlenc', cat:'dev', icon:'🔗', color:'rgba(130,90,240,0.15)', tagColor:'#825af0', tag:'Developer',
+    name:'URL Encoder/Decoder', desc:'Encode special characters for URLs or decode URL strings.',
+    render: () => `
+      <div class="modal-title">🔗 URL Encoder / Decoder</div>
+      <div class="modal-subtitle">Make URLs safe or read encoded URLs.</div>
+      <div class="field"><label>Input</label><textarea id="url_input" placeholder="https://example.com/search?q=hello world&lang=en"></textarea></div>
+      <div class="btn-row">
+        <button class="btn" onclick="doURL('encode')">Encode</button>
+        <button class="btn btn-ghost" onclick="doURL('decode')">Decode</button>
+      </div>
+      <div class="field" style="margin-top:16px"><label>Output</label><div class="result-box" id="url_result"></div></div>
+      <div class="btn-row"><button class="btn btn-ghost" onclick="copyText('url_result')">Copy</button></div>
+    `
+  },
+  {
+    id:'htmlenc', cat:'dev', icon:'</>',color:'rgba(240,192,64,0.15)', tagColor:'#f0c040', tag:'Developer',
+    name:'HTML Encoder/Decoder', desc:'Encode special chars to HTML entities or decode them back.',
+    render: () => `
+      <div class="modal-title">&lt;/&gt; HTML Encoder / Decoder</div>
+      <div class="modal-subtitle">Safely encode HTML special characters.</div>
+      <div class="field"><label>Input</label><textarea id="html_input" placeholder="<div class='test'>Hello & World</div>"></textarea></div>
+      <div class="btn-row">
+        <button class="btn" onclick="doHTML('encode')">Encode</button>
+        <button class="btn btn-ghost" onclick="doHTML('decode')">Decode</button>
+      </div>
+      <div class="field" style="margin-top:16px"><label>Output</label><div class="result-box" id="html_result"></div></div>
+      <div class="btn-row"><button class="btn btn-ghost" onclick="copyText('html_result')">Copy</button></div>
+    `
+  },
+  {
+    id:'passgen', cat:'dev', icon:'🔐', color:'rgba(90,158,240,0.15)', tagColor:'#5a9ef0', tag:'Developer',
+    name:'Password Generator', desc:'Generate strong, secure random passwords with custom rules.',
+    render: () => `
+      <div class="modal-title">🔐 Password Generator</div>
+      <div class="modal-subtitle">Generate secure passwords for any purpose.</div>
+      <div class="grid-2">
+        <div class="field"><label>Length</label><input type="number" id="pg_len" value="16" min="4" max="128"></div>
+        <div class="field"><label>Count</label><input type="number" id="pg_count" value="5" min="1" max="20"></div>
+      </div>
+      <div class="field" style="display:flex;gap:16px;flex-wrap:wrap">
+        <label style="display:flex;align-items:center;gap:6px;text-transform:none;letter-spacing:0;font-size:14px"><input type="checkbox" id="pg_upper" checked> Uppercase</label>
+        <label style="display:flex;align-items:center;gap:6px;text-transform:none;letter-spacing:0;font-size:14px"><input type="checkbox" id="pg_lower" checked> Lowercase</label>
+        <label style="display:flex;align-items:center;gap:6px;text-transform:none;letter-spacing:0;font-size:14px"><input type="checkbox" id="pg_num" checked> Numbers</label>
+        <label style="display:flex;align-items:center;gap:6px;text-transform:none;letter-spacing:0;font-size:14px"><input type="checkbox" id="pg_sym" checked> Symbols</label>
+      </div>
+      <div class="btn-row"><button class="btn" onclick="genPasswords()">Generate Passwords</button></div>
+      <div class="field" style="margin-top:16px"><label>Generated Passwords</label><div class="result-box" id="pg_result" style="font-family:monospace"></div></div>
+      <div class="btn-row"><button class="btn btn-ghost" onclick="copyText('pg_result')">Copy All</button></div>
+    `
+  },
+  {
+    id:'metatag', cat:'seo', icon:'🔍', color:'rgba(224,90,90,0.15)', tagColor:'#e05a5a', tag:'SEO',
+    name:'Meta Tag Generator', desc:'Generate SEO-optimized meta tags for any webpage instantly.',
+    render: () => `
+      <div class="modal-title">🔍 Meta Tag Generator</div>
+      <div class="modal-subtitle">Generate complete SEO meta tags for your page.</div>
+      <div class="field"><label>Page Title</label><input type="text" id="mt_title" placeholder="My Awesome Page – Brand Name" maxlength="70"></div>
+      <div class="field"><label>Description</label><textarea id="mt_desc" placeholder="Describe your page in 150-160 characters..." style="min-height:80px" maxlength="160"></textarea></div>
+      <div class="field"><label>Keywords (comma separated)</label><input type="text" id="mt_keys" placeholder="keyword1, keyword2, keyword3"></div>
+      <div class="grid-2">
+        <div class="field"><label>Author</label><input type="text" id="mt_author" placeholder="Your Name"></div>
+        <div class="field"><label>Canonical URL</label><input type="text" id="mt_url" placeholder="https://yoursite.com/page"></div>
+      </div>
+      <div class="btn-row"><button class="btn" onclick="genMeta()">Generate Meta Tags</button></div>
+      <div class="field" style="margin-top:16px"><label>Output (paste in &lt;head&gt;)</label>
+        <div class="result-box" id="mt_result" style="font-family:monospace;font-size:12px;max-height:220px;overflow-y:auto"></div>
+      </div>
+      <div class="btn-row"><button class="btn btn-ghost" onclick="copyText('mt_result')">Copy Tags</button></div>
+    `
+  },
+  {
+    id:'readtime', cat:'seo', icon:'⏱️', color:'rgba(130,90,240,0.15)', tagColor:'#825af0', tag:'SEO',
+    name:'Reading Time Calculator', desc:'Calculate how long it takes to read any article or blog post.',
+    render: () => `
+      <div class="modal-title">⏱️ Reading Time Calculator</div>
+      <div class="modal-subtitle">Find out how long readers will spend on your content.</div>
+      <div class="field"><label>Paste Article / Content</label><textarea id="rt_input" placeholder="Paste your article here..." oninput="calcReadTime()"></textarea></div>
+      <div class="field"><label>Reading Speed (WPM)</label><input type="number" id="rt_wpm" value="238" min="100" max="600" oninput="calcReadTime()"></div>
+      <div class="stats-row" id="rt_stats">
+        <div class="stat-chip"><strong id="rt_time">0 min</strong>Read Time</div>
+        <div class="stat-chip"><strong id="rt_words">0</strong>Words</div>
+        <div class="stat-chip"><strong id="rt_chars">0</strong>Characters</div>
+      </div>
+    `
+  },
+  {
+    id:'slug', cat:'seo', icon:'🐌', color:'rgba(240,192,64,0.15)', tagColor:'#f0c040', tag:'SEO',
+    name:'Slug Generator', desc:'Convert any title or phrase into a clean, SEO-friendly URL slug.',
+    render: () => `
+      <div class="modal-title">🐌 URL Slug Generator</div>
+      <div class="modal-subtitle">Create clean, SEO-friendly slugs from any title.</div>
+      <div class="field"><label>Title or Phrase</label>
+        <input type="text" id="sg_input" placeholder="My Awesome Blog Post Title!" oninput="genSlug()">
+      </div>
+      <div class="field" style="margin-top:16px"><label>Generated Slug</label>
+        <div class="result-box" id="sg_result" style="font-family:monospace;color:var(--accent)"></div>
+      </div>
+      <div class="btn-row"><button class="btn btn-ghost" onclick="copyText('sg_result')">Copy Slug</button></div>
+    `
+  },
+  {
+    id:'kwdensity', cat:'seo', icon:'📊', color:'rgba(90,158,240,0.15)', tagColor:'#5a9ef0', tag:'SEO',
+    name:'Keyword Density Checker', desc:'Analyze keyword frequency and density in any piece of text.',
+    render: () => `
+      <div class="modal-title">📊 Keyword Density Checker</div>
+      <div class="modal-subtitle">See which words appear most in your content.</div>
+      <div class="field"><label>Paste Your Content</label><textarea id="kd_input" placeholder="Paste article or content..."></textarea></div>
+      <div class="btn-row"><button class="btn" onclick="checkDensity()">Analyze</button></div>
+      <div class="field" style="margin-top:16px"><label>Top Keywords</label>
+        <div class="result-box" id="kd_result" style="max-height:220px;overflow-y:auto;font-family:monospace;font-size:13px"></div>
+      </div>
+    `
+  },
+  {
+    id:'percent', cat:'calc', icon:'%', color:'rgba(224,90,90,0.15)', tagColor:'#e05a5a', tag:'Calculator',
+    name:'Percentage Calculator', desc:'Calculate percentages, increases, decreases and differences.',
+    render: () => `
+      <div class="modal-title">% Percentage Calculator</div>
+      <div class="modal-subtitle">Multiple percentage calculations in one place.</div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px">
+        <label>What is X% of Y?</label>
+        <div class="grid-2" style="margin-top:8px">
+          <input type="number" id="pc1_x" placeholder="X (%)">
+          <input type="number" id="pc1_y" placeholder="Y (number)">
+        </div>
+        <div class="btn-row"><button class="btn" onclick="calcPercent1()">Calculate</button></div>
+        <div class="result-box" id="pc1_res" style="margin-top:12px;min-height:40px"></div>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px">
+        <label>X is what % of Y?</label>
+        <div class="grid-2" style="margin-top:8px">
+          <input type="number" id="pc2_x" placeholder="X">
+          <input type="number" id="pc2_y" placeholder="Y">
+        </div>
+        <div class="btn-row"><button class="btn" onclick="calcPercent2()">Calculate</button></div>
+        <div class="result-box" id="pc2_res" style="margin-top:12px;min-height:40px"></div>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px">
+        <label>% Change from X to Y</label>
+        <div class="grid-2" style="margin-top:8px">
+          <input type="number" id="pc3_x" placeholder="From">
+          <input type="number" id="pc3_y" placeholder="To">
+        </div>
+        <div class="btn-row"><button class="btn" onclick="calcPercent3()">Calculate</button></div>
+        <div class="result-box" id="pc3_res" style="margin-top:12px;min-height:40px"></div>
+      </div>
+    `
+  },
+  {
+    id:'age', cat:'calc', icon:'🎂', color:'rgba(240,192,64,0.15)', tagColor:'#f0c040', tag:'Calculator',
+    name:'Age Calculator', desc:'Calculate exact age in years, months, days, hours and minutes.',
+    render: () => `
+      <div class="modal-title">🎂 Age Calculator</div>
+      <div class="modal-subtitle">Find your exact age down to the minute.</div>
+      <div class="grid-2">
+        <div class="field"><label>Date of Birth</label><input type="text" id="age_dob" placeholder="DD/MM/YYYY" maxlength="10" oninput="formatDateInput(this)"></div>
+        <div class="field"><label>Calculate On</label><input type="text" id="age_today" placeholder="DD/MM/YYYY (leave blank = today)" maxlength="10" oninput="formatDateInput(this)"></div>
+      </div>
+      <div class="btn-row"><button class="btn" onclick="calcAge()">Calculate Age</button></div>
+      <div class="result-box" id="age_result" style="margin-top:16px"></div>
+    `
+  },
+  {
+    id:'emi', cat:'calc', icon:'🏦', color:'rgba(90,158,240,0.15)', tagColor:'#5a9ef0', tag:'Calculator',
+    name:'EMI / Loan Calculator', desc:'Calculate monthly EMI, total interest and payment breakdown.',
+    render: () => `
+      <div class="modal-title">🏦 EMI / Loan Calculator</div>
+      <div class="modal-subtitle">Plan your loan repayments precisely.</div>
+      <div class="grid-2">
+        <div class="field"><label>Loan Amount (₹)</label><input type="number" id="emi_principal" placeholder="500000"></div>
+        <div class="field"><label>Annual Interest Rate (%)</label><input type="number" id="emi_rate" placeholder="8.5" step="0.1"></div>
+      </div>
+      <div class="grid-2">
+        <div class="field"><label>Loan Tenure (Months)</label><input type="number" id="emi_months" placeholder="60"></div>
+        <div class="field"><label>Currency Symbol</label><input type="text" id="emi_currency" value="₹" maxlength="3"></div>
+      </div>
+      <div class="btn-row"><button class="btn" onclick="calcEMI()">Calculate EMI</button></div>
+      <div class="stats-row" id="emi_stats" style="margin-top:16px">
+        <div class="stat-chip"><strong id="emi_monthly">–</strong>Monthly EMI</div>
+        <div class="stat-chip"><strong id="emi_total">–</strong>Total Payment</div>
+        <div class="stat-chip"><strong id="emi_interest">–</strong>Total Interest</div>
+      </div>
+    `
+  },
+  {
+    id:'gpa', cat:'calc', icon:'🎓', color:'rgba(130,90,240,0.15)', tagColor:'#825af0', tag:'Calculator',
+    name:'GPA Calculator', desc:'Calculate your Grade Point Average from course grades and credits.',
+    render: () => `
+      <div class="modal-title">🎓 GPA Calculator</div>
+      <div class="modal-subtitle">Add your courses and get your GPA instantly.</div>
+      <div id="gpa_courses">
+        <div class="gpa-course grid-2" style="margin-bottom:8px">
+          <input type="text" placeholder="Course name (optional)">
+          <div style="display:flex;gap:8px">
+            <select class="gpa-grade"><option>A+</option><option>A</option><option>A-</option><option>B+</option><option>B</option><option>B-</option><option>C+</option><option>C</option><option>C-</option><option>D</option><option>F</option></select>
+            <input type="number" class="gpa-credits" placeholder="Credits" value="3" min="1" max="6" style="width:90px">
+          </div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="addGPACourse()">+ Add Course</button>
+        <button class="btn" onclick="calcGPA()">Calculate GPA</button>
+      </div>
+      <div class="result-box" id="gpa_result" style="margin-top:16px"></div>
+    `
+  },
+  {
+    id:'unitconv', cat:'convert', icon:'⚖️', color:'rgba(224,90,90,0.15)', tagColor:'#e05a5a', tag:'Converter',
+    name:'Unit Converter', desc:'Convert length, weight, temperature, area, volume and speed.',
+    render: () => `
+      <div class="modal-title">⚖️ Unit Converter</div>
+      <div class="modal-subtitle">Convert between all common measurement units.</div>
+      <div class="field"><label>Category</label>
+        <select id="uc_cat" onchange="updateUnitOptions()">
+          <option value="length">Length</option>
+          <option value="weight">Weight / Mass</option>
+          <option value="temp">Temperature</option>
+          <option value="area">Area</option>
+          <option value="speed">Speed</option>
+          <option value="volume">Volume</option>
+        </select>
+      </div>
+      <div class="grid-2">
+        <div class="field"><label>From</label><select id="uc_from"></select></div>
+        <div class="field"><label>To</label><select id="uc_to"></select></div>
+      </div>
+      <div class="field"><label>Value</label><input type="number" id="uc_val" placeholder="Enter value" oninput="doConvert()"></div>
+      <div class="result-box" id="uc_result" style="font-size:1.2rem;font-family:var(--font-head);color:var(--accent)"></div>
+    `
+  },
+  {
+    id:'binary', cat:'convert', icon:'01', color:'rgba(240,192,64,0.15)', tagColor:'#f0c040', tag:'Converter',
+    name:'Binary Converter', desc:'Convert between Binary, Decimal, Octal and Hexadecimal.',
+    render: () => `
+      <div class="modal-title">01 Number System Converter</div>
+      <div class="modal-subtitle">Convert between Binary, Decimal, Octal, and Hex.</div>
+      <div class="grid-2">
+        <div class="field"><label>Decimal</label><input type="text" id="nc_dec" placeholder="255" oninput="convertNum('dec')"></div>
+        <div class="field"><label>Binary</label><input type="text" id="nc_bin" placeholder="11111111" oninput="convertNum('bin')"></div>
+      </div>
+      <div class="grid-2">
+        <div class="field"><label>Octal</label><input type="text" id="nc_oct" placeholder="377" oninput="convertNum('oct')"></div>
+        <div class="field"><label>Hexadecimal</label><input type="text" id="nc_hex" placeholder="FF" oninput="convertNum('hex')"></div>
+      </div>
+    `
+  }
+];
+
+// ── RENDER GRID ──
+function renderGrid(list) {
+  const grid = document.getElementById('toolsGrid');
+  grid.innerHTML = list.map(t => `
+    <div class="tool-card" data-cat="${t.cat}" onclick="openTool('${t.id}')">
+      <div class="tool-icon" style="background:${t.color}">${t.icon}</div>
+      <div class="tool-name">${t.name}</div>
+      <div class="tool-desc">${t.desc}</div>
+      <span class="tool-tag" style="background:${t.color};color:${t.tagColor}">${t.tag}</span>
+    </div>
+  `).join('');
+}
+renderGrid(tools);
+
+// ── FILTER ──
+function filterCat(cat, btn) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid(cat === 'all' ? tools : tools.filter(t => t.cat === cat));
+}
+function filterTools(q) {
+  const s = q.toLowerCase();
+  renderGrid(s ? tools.filter(t => t.name.toLowerCase().includes(s) || t.desc.toLowerCase().includes(s)) : tools);
+}
+
+// ── MODAL ──
+let currentTool = null;
+function openTool(id) {
+  currentTool = id;
+  const tool = tools.find(t => t.id === id);
+  document.getElementById('modalContent').innerHTML = tool.render();
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  // post-render init
+  if (id === 'unitconv') { updateUnitOptions(); }
+  if (id === 'lorem') { genLorem(); }
+  if (id === 'passgen') { genPasswords(); }
+  if (id === 'slug') { genSlug(); }
+}
+function closeModal(e) { if (e.target === document.getElementById('modalOverlay')) closeModalBtn(); }
+function closeModalBtn() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalBtn(); });
+
+// ── HELPERS ──
+function copyText(id) {
+  const el = document.getElementById(id);
+  const text = el.innerText || el.textContent;
+  navigator.clipboard.writeText(text).then(() => showToast());
+}
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+function clearField(id) { document.getElementById(id).value = ''; }
+function setResult(id, text) { document.getElementById(id).textContent = text; }
+
+// ── WORD COUNT ──
+function doWordCount() {
+  const t = document.getElementById('wc_input').value;
+  const words = t.trim() === '' ? 0 : t.trim().split(/\s+/).length;
+  const chars = t.length;
+  const noSpace = t.replace(/\s/g,'').length;
+  const sentences = t.split(/[.!?]+/).filter(s => s.trim()).length;
+  const paragraphs = t.split(/\n\n+/).filter(p => p.trim()).length || (t.trim() ? 1 : 0);
+  const readMin = Math.ceil(words / 238);
+  document.getElementById('wc_words').textContent = words.toLocaleString();
+  document.getElementById('wc_chars').textContent = chars.toLocaleString();
+  document.getElementById('wc_nospace').textContent = noSpace.toLocaleString();
+  document.getElementById('wc_sent').textContent = sentences.toLocaleString();
+  document.getElementById('wc_para').textContent = paragraphs.toLocaleString();
+  document.getElementById('wc_read').textContent = readMin + ' min';
+}
+
+// ── CASE CONVERTER ──
+function convertCase(type) {
+  const t = document.getElementById('cc_input').value;
+  let r;
+  if (type === 'upper') r = t.toUpperCase();
+  else if (type === 'lower') r = t.toLowerCase();
+  else if (type === 'title') r = t.replace(/\b\w/g, c => c.toUpperCase());
+  else if (type === 'sentence') r = t.charAt(0).toUpperCase() + t.slice(1).toLowerCase();
+  else if (type === 'camel') r = t.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m,c) => c.toUpperCase());
+  else if (type === 'snake') r = t.toLowerCase().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,'');
+  else if (type === 'kebab') r = t.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
+  setResult('cc_result', r);
+}
+
+// ── LOREM IPSUM ──
+const loremWords = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum'.split(' ');
+function genLorem() {
+  const n = parseInt(document.getElementById('li_para').value) || 3;
+  let out = '';
+  for (let i = 0; i < n; i++) {
+    const len = 40 + Math.floor(Math.random()*40);
+    let p = '';
+    for (let j = 0; j < len; j++) p += loremWords[Math.floor(Math.random()*loremWords.length)] + ' ';
+    out += p.trim().charAt(0).toUpperCase() + p.trim().slice(1) + '.\n\n';
+  }
+  setResult('li_result', out.trim());
+}
+
+// ── REVERSE ──
+function reverseText(mode) {
+  const t = document.getElementById('rv_input').value;
+  let r;
+  if (mode === 'chars') r = t.split('').reverse().join('');
+  else if (mode === 'words') r = t.split(/\s+/).reverse().join(' ');
+  else r = t.split('\n').reverse().join('\n');
+  setResult('rv_result', r);
+}
+
+// ── DUPLICATE REMOVER ──
+function removeDups(sort) {
+  const lines = document.getElementById('dr_input').value.split('\n');
+  let unique = [...new Set(lines)];
+  if (sort) unique = unique.sort();
+  setResult('dr_result', unique.join('\n'));
+}
+function removeBlank() {
+  const lines = document.getElementById('dr_input').value.split('\n').filter(l => l.trim());
+  setResult('dr_result', lines.join('\n'));
+}
+
+// ── JSON ──
+function formatJSON(pretty) {
+  try {
+    const parsed = JSON.parse(document.getElementById('jf_input').value);
+    setResult('jf_result', pretty ? JSON.stringify(parsed, null, 2) : JSON.stringify(parsed));
+  } catch(e) {
+    setResult('jf_result', '❌ Invalid JSON: ' + e.message);
+  }
+}
+function validateJSON() {
+  try {
+    JSON.parse(document.getElementById('jf_input').value);
+    setResult('jf_result', '✅ Valid JSON!');
+  } catch(e) {
+    setResult('jf_result', '❌ Invalid: ' + e.message);
+  }
+}
+
+// ── BASE64 ──
+function doBase64(mode) {
+  const t = document.getElementById('b64_input').value;
+  try {
+    setResult('b64_result', mode === 'encode' ? btoa(unescape(encodeURIComponent(t))) : decodeURIComponent(escape(atob(t))));
+  } catch(e) { setResult('b64_result', '❌ Error: ' + e.message); }
+}
+
+// ── URL ENC ──
+function doURL(mode) {
+  const t = document.getElementById('url_input').value;
+  setResult('url_result', mode === 'encode' ? encodeURIComponent(t) : decodeURIComponent(t));
+}
+
+// ── HTML ENC ──
+function doHTML(mode) {
+  const t = document.getElementById('html_input').value;
+  if (mode === 'encode') {
+    setResult('html_result', t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'));
+  } else {
+    const el = document.createElement('textarea');
+    el.innerHTML = t;
+    setResult('html_result', el.value);
+  }
+}
+
+// ── PASSWORD ──
+function genPasswords() {
+  const len = parseInt(document.getElementById('pg_len').value) || 16;
+  const count = parseInt(document.getElementById('pg_count').value) || 5;
+  const upper = document.getElementById('pg_upper').checked;
+  const lower = document.getElementById('pg_lower').checked;
+  const num = document.getElementById('pg_num').checked;
+  const sym = document.getElementById('pg_sym').checked;
+  let chars = '';
+  if (upper) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  if (lower) chars += 'abcdefghijklmnopqrstuvwxyz';
+  if (num) chars += '0123456789';
+  if (sym) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+  if (!chars) { setResult('pg_result','Select at least one character type'); return; }
+  const passwords = [];
+  for (let i = 0; i < count; i++) {
+    let p = '';
+    for (let j = 0; j < len; j++) p += chars[Math.floor(Math.random()*chars.length)];
+    passwords.push(p);
+  }
+  setResult('pg_result', passwords.join('\n'));
+}
+
+// ── META TAG ──
+function genMeta() {
+  const title = document.getElementById('mt_title').value;
+  const desc = document.getElementById('mt_desc').value;
+  const keys = document.getElementById('mt_keys').value;
+  const author = document.getElementById('mt_author').value;
+  const url = document.getElementById('mt_url').value;
+  const tags = [
+    `<meta charset="UTF-8">`,
+    `<meta name="viewport" content="width=device-width, initial-scale=1.0">`,
+    title ? `<title>${title}</title>` : '',
+    title ? `<meta name="title" content="${title}">` : '',
+    desc ? `<meta name="description" content="${desc}">` : '',
+    keys ? `<meta name="keywords" content="${keys}">` : '',
+    author ? `<meta name="author" content="${author}">` : '',
+    url ? `<link rel="canonical" href="${url}">` : '',
+    ``,
+    `<!-- Open Graph -->`,
+    title ? `<meta property="og:title" content="${title}">` : '',
+    desc ? `<meta property="og:description" content="${desc}">` : '',
+    url ? `<meta property="og:url" content="${url}">` : '',
+    `<meta property="og:type" content="website">`,
+    ``,
+    `<!-- Twitter -->`,
+    `<meta name="twitter:card" content="summary_large_image">`,
+    title ? `<meta name="twitter:title" content="${title}">` : '',
+    desc ? `<meta name="twitter:description" content="${desc}">` : '',
+  ].filter(Boolean).join('\n');
+  setResult('mt_result', tags);
+}
+
+// ── READ TIME ──
+function calcReadTime() {
+  const t = document.getElementById('rt_input').value;
+  const wpm = parseInt(document.getElementById('rt_wpm').value) || 238;
+  const words = t.trim() === '' ? 0 : t.trim().split(/\s+/).length;
+  const mins = Math.ceil(words / wpm);
+  document.getElementById('rt_time').textContent = mins + ' min';
+  document.getElementById('rt_words').textContent = words.toLocaleString();
+  document.getElementById('rt_chars').textContent = t.length.toLocaleString();
+}
+
+// ── SLUG ──
+function genSlug() {
+  const t = (document.getElementById('sg_input')||{}).value || '';
+  const slug = t.toLowerCase().trim().replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-');
+  setResult('sg_result', slug || 'your-slug-here');
+}
+
+// ── KEYWORD DENSITY ──
+function checkDensity() {
+  const t = document.getElementById('kd_input').value.toLowerCase();
+  const stopWords = new Set('a an the and or but in on at to for of with as is was are were be been being have has had do does did will would could should may might shall can i you he she it we they them their this that these those'.split(' '));
+  const words = t.match(/\b[a-z]{3,}\b/g) || [];
+  const freq = {};
+  words.forEach(w => { if (!stopWords.has(w)) freq[w] = (freq[w]||0)+1; });
+  const sorted = Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,20);
+  const total = words.length;
+  const out = sorted.map(([w,c]) => `${w.padEnd(25)} ${c}x  (${((c/total)*100).toFixed(1)}%)`).join('\n');
+  setResult('kd_result', out || 'No keywords found');
+}
+
+// ── PERCENTAGE ──
+function calcPercent1() { const x=+document.getElementById('pc1_x').value, y=+document.getElementById('pc1_y').value; setResult('pc1_res', `${x}% of ${y} = ${(x/100*y).toFixed(4)}`); }
+function calcPercent2() { const x=+document.getElementById('pc2_x').value, y=+document.getElementById('pc2_y').value; setResult('pc2_res', `${x} is ${((x/y)*100).toFixed(4)}% of ${y}`); }
+function calcPercent3() { const x=+document.getElementById('pc3_x').value, y=+document.getElementById('pc3_y').value; const ch=((y-x)/x*100); setResult('pc3_res', `Change: ${ch>0?'+':''}${ch.toFixed(4)}% (${ch>0?'Increase':'Decrease'})`); }
+
+// ── AGE ──
+function formatDateInput(el) {
+  let v = el.value.replace(/\D/g,'');
+  if (v.length>2) v = v.slice(0,2)+'/'+v.slice(2);
+  if (v.length>5) v = v.slice(0,5)+'/'+v.slice(5,9);
+  el.value = v;
+}
+function calcAge() {
+  const dob = document.getElementById('age_dob').value;
+  const todayRaw = document.getElementById('age_today').value;
+  const parse = s => { const [d,m,y]=s.split('/'); return new Date(+y,+m-1,+d); };
+  const birth = parse(dob);
+  const now = todayRaw ? parse(todayRaw) : new Date();
+  if (isNaN(birth.getTime())) { setResult('age_result','❌ Invalid date. Use DD/MM/YYYY'); return; }
+  let y=now.getFullYear()-birth.getFullYear(), m=now.getMonth()-birth.getMonth(), d=now.getDate()-birth.getDate();
+  if (d<0){m--;d+=new Date(now.getFullYear(),now.getMonth(),0).getDate();}
+  if (m<0){y--;m+=12;}
+  const totalDays = Math.floor((now-birth)/(1000*60*60*24));
+  setResult('age_result', `🎂 Age: ${y} years, ${m} months, ${d} days\n📅 Total Days: ${totalDays.toLocaleString()}\n⏰ Total Hours: ${(totalDays*24).toLocaleString()}`);
+}
+
+// ── EMI ──
+function calcEMI() {
+  const P=+document.getElementById('emi_principal').value;
+  const r=+document.getElementById('emi_rate').value/12/100;
+  const n=+document.getElementById('emi_months').value;
+  const cur=document.getElementById('emi_currency').value||'₹';
+  const emi = P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+  const total=emi*n, interest=total-P;
+  const fmt = v => cur+Math.round(v).toLocaleString('en-IN');
+  document.getElementById('emi_monthly').textContent = fmt(emi);
+  document.getElementById('emi_total').textContent = fmt(total);
+  document.getElementById('emi_interest').textContent = fmt(interest);
+}
+
+// ── GPA ──
+const gradePoints = {'A+':4.0,'A':4.0,'A-':3.7,'B+':3.3,'B':3.0,'B-':2.7,'C+':2.3,'C':2.0,'C-':1.7,'D':1.0,'F':0};
+function addGPACourse() {
+  const div = document.createElement('div');
+  div.className = 'gpa-course grid-2';
+  div.style.marginBottom = '8px';
+  div.innerHTML = `<input type="text" placeholder="Course name (optional)"><div style="display:flex;gap:8px"><select class="gpa-grade"><option>A+</option><option>A</option><option>A-</option><option>B+</option><option>B</option><option>B-</option><option>C+</option><option>C</option><option>C-</option><option>D</option><option>F</option></select><input type="number" class="gpa-credits" placeholder="Credits" value="3" min="1" max="6" style="width:90px"></div>`;
+  document.getElementById('gpa_courses').appendChild(div);
+}
+function calcGPA() {
+  const grades = document.querySelectorAll('.gpa-grade');
+  const credits = document.querySelectorAll('.gpa-credits');
+  let totalPoints=0, totalCredits=0;
+  grades.forEach((g,i)=>{ const c=+credits[i].value||3; totalPoints+=gradePoints[g.value]*c; totalCredits+=c; });
+  const gpa=(totalPoints/totalCredits).toFixed(2);
+  setResult('gpa_result', `📊 GPA: ${gpa} / 4.0\n📚 Total Credits: ${totalCredits}\n🎯 Grade: ${gpa>=3.7?'Summa Cum Laude':gpa>=3.5?'Magna Cum Laude':gpa>=3.0?'Cum Laude':gpa>=2.0?'Passing':'Academic Probation'}`);
+}
+
+// ── UNIT CONVERTER ──
+const units = {
+  length:{ m:1, km:0.001, cm:100, mm:1000, mi:0.000621371, ft:3.28084, inch:39.3701, yd:1.09361 },
+  weight:{ kg:1, g:1000, mg:1e6, lb:2.20462, oz:35.274, ton:0.001 },
+  area:{ m2:1, km2:1e-6, cm2:10000, ft2:10.7639, acre:0.000247105, hectare:0.0001 },
+  speed:{ ms:1, kmh:3.6, mph:2.23694, knot:1.94384 },
+  volume:{ l:1, ml:1000, m3:0.001, gallon:0.264172, cup:4.22675, floz:33.814 }
+};
+function updateUnitOptions() {
+  const cat = document.getElementById('uc_cat').value;
+  const from = document.getElementById('uc_from');
+  const to = document.getElementById('uc_to');
+  if (cat === 'temp') {
+    const opts = '<option>°C</option><option>°F</option><option>K</option>';
+    from.innerHTML = opts; to.innerHTML = opts; to.selectedIndex=1;
+  } else {
+    const keys = Object.keys(units[cat]);
+    const opts = keys.map(k=>`<option value="${k}">${k}</option>`).join('');
+    from.innerHTML = opts; to.innerHTML = opts; to.selectedIndex=1;
+  }
+  doConvert();
+}
+function doConvert() {
+  const cat = document.getElementById('uc_cat').value;
+  const val = +document.getElementById('uc_val').value;
+  const from = document.getElementById('uc_from').value;
+  const to = document.getElementById('uc_to').value;
+  let result;
+  if (cat === 'temp') {
+    let c;
+    if (from==='°C') c=val; else if (from==='°F') c=(val-32)*5/9; else c=val-273.15;
+    if (to==='°C') result=c; else if (to==='°F') result=c*9/5+32; else result=c+273.15;
+  } else {
+    const base = val / units[cat][from];
+    result = base * units[cat][to];
+  }
+  document.getElementById('uc_result').textContent = isNaN(result) ? '–' : `${val} ${from} = ${+result.toFixed(8)} ${to}`;
+}
+
+// ── BINARY / NUMBER CONVERT ──
+function convertNum(from) {
+  const ids = {dec:'nc_dec',bin:'nc_bin',oct:'nc_oct',hex:'nc_hex'};
+  const val = document.getElementById(ids[from]).value.trim();
+  if (!val) return;
+  let dec;
+  try {
+    if (from==='dec') dec=parseInt(val,10);
+    else if (from==='bin') dec=parseInt(val,2);
+    else if (from==='oct') dec=parseInt(val,8);
+    else dec=parseInt(val,16);
+    if (isNaN(dec)) return;
+    if (from!=='dec') document.getElementById('nc_dec').value=dec;
+    if (from!=='bin') document.getElementById('nc_bin').value=dec.toString(2);
+    if (from!=='oct') document.getElementById('nc_oct').value=dec.toString(8);
+    if (from!=='hex') document.getElementById('nc_hex').value=dec.toString(16).toUpperCase();
+  } catch(e) {}
+}
+</script>
+</body>
+</html>
